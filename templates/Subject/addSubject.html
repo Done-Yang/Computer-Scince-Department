@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-body">
+            <form method="POST" action="{% url 'add_subject' %}" enctype="multipart/form-data">
+               {% csrf_token %}
+               <div class="col-12">
+                  <h5 class="form-title"><span>Add Subject</span></h5>
+               </div>
+               {% include 'includes/messages.html' %}
+               <div class="col-sm-11">
+                  <div class="form-group">
+                      <label>Subject Name</label>
+                      <input type="text" class="form-control" name="subject_name" >
+                  </div>
+               </div> <br>
+
+              <div class="col-sm-11">
+               <label>Teacher</label>
+               <select class="form-control" id="" name="teacherID" aria-placeholder="Select Department" required>
+                   {% for t in teachers %}
+                   <option value="{{t.id}}">{{t.fullName}}</option>
+                   {% endfor %}
+               </select>
+              </div> <br>
+
+              <div class="col-sm-11">
+              <label>Year</label>
+               <select class="form-control" id="" name="year" aria-placeholder="Select Department" required>
+                   <option>Year1</option>
+                   <option>Year2</option>
+                   <option>Year3</option>
+               </select>
+              </div> <br> 
+              <div class="col-sm-11">
+               <label>Session Year</label>
+               <select class="form-control" id="" name="sessionYearID" aria-placeholder="Select Department" required>
+                   {% for i in sessionYear %}
+                   <option value="{{i.id}}">{{i.sessionYear}}</option>
+                   {% endfor %}
+               </select>
+              </div> <br>
+
+               <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Post</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

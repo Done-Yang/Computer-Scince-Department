@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-body">
+            <form method="POST" action="{% url 'update_subject' %}" enctype="multipart/form-data">
+               {% csrf_token %}
+               <div class="col-12">
+                  <h5 class="form-title"><span>Edit Subject</span></h5>
+               </div>
+               {% include 'includes/messages.html' %}
+               {% for i in subject %}
+               <div class="col-sm-11">
+                  <div class="form-group">
+                      <label>Subject Name</label>
+                      <input type="text" class="form-control" name="subject_name" value="{{i.subject}}">
+                      <input type="text" class="form-control" name="subject_id"
+                        value="{{i.id}}" hidden>
+                  </div>
+               </div> <br>
+
+              <div class="col-sm-11">
+               <label>Teacher</label>
+               <select class="form-control" name="teacherID" aria-placeholder="Select Department" required>
+                  {% for j in teacher %}
+                   <option value="{{j.id}}">{{j}}</option>
+                  {% endfor %}
+               </select>
+              </div> <br>
+
+              <div class="col-sm-11">
+              <label>Year</label>
+               <select class="form-control" id="" name="year" aria-placeholder="Select Department" required>
+                   <option>Year1</option>
+                   <option>Year2</option>
+                   <option>Year3</option>
+               </select>
+              </div> <br> 
+              <div class="col-sm-11">
+               
+               <label>Session Year</label>
+               <select class="form-control" id="" name="sessionYearID" aria-placeholder="Select Department" required>
+                  {% for s in sessionYear %}
+                   <option value="{{s.id}}">{{s.sessionYear}}</option>
+                  {% endfor %}
+               </select>
+              </div> <br>
+              {% endfor %}
+               <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Update Subject</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

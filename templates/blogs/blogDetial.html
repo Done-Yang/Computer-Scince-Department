@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <a href="{% url 'view_blog' %}"><i class='fas fa-backward'></i> Back</a> <br><br>
+
+                {% for d in detial %}
+                <div class="col-12">
+                    <h4 class="title"><span>{{ d.title }}</span></h4>
+                    <a href="{{ d.link }}">{{ d.link }}</a>
+                    <p style="font-size: 12px;">{{ d.created }}</p>
+                </div> <br>
+                <div class="col-sm-11">
+                    <div class="content">
+                        {% if d.picture %}
+                        <div class="text-center">
+                            <img src="{{ d.picture.url }}" alt="" style="height: auto; width: 25em;" class="text-center"> 
+                        </div> <br><br>
+                        {% endif %}
+                        {% if d.dsc %}
+                        <p>{{ d.dsc }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+                <a href="{% url 'view_blog' %}"><i class='fas fa-backward'></i> Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

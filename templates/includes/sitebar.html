@@ -1,0 +1,195 @@
+{% load static %}
+{% load active_link_tags %}
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            <!-- For HOD -->
+            {% if user.user_type == '1' %}
+            <ul>
+                <li class="menu-title">
+                    <span>Main Menu</span>
+                </li>
+                <li class="{% active_link 'hod_home' 'active' %}">
+                    <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+                </li>
+                <li  class="submenu  %} {% active_link 'view_student' 'active' %} {% active_link 'add_student' 'active' %}">
+                    <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_student' %}">Add Student</a></li>
+                        <li><a href="{% url 'view_student' %}">View Student</a></li>
+                    </ul>
+                </li>
+                <li class="submenu  %} {% active_link 'view_teacher' 'active' %} {% active_link 'add_teacher' 'active' %}">
+                    <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_teacher' %}">Add Teacher</a></li>
+                        <li><a href="{% url 'view_teacher' %}">View Teacher</a></li>
+                    </ul>
+                </li>
+                <li class="submenu  %} {% active_link 'view_officer' 'active' %} {% active_link 'add_officer' 'active' %}">
+                    <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Officers</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_officer' %}">Add Officer</a></li>
+                        <li><a href="{% url 'view_officer' %}">View Officer</a></li>
+                    </ul>
+                </li>
+                <li class="submenu  %} {% active_link 'view_sessionYear' 'active' %} {% active_link 'add_sessionYear' 'active' %}">
+                    <a href="#"><i class="fas fa-book-reader"></i> <span> Session Years</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_sessionYear' %}">Add Session Year</a></li>
+                        <li><a href="{% url 'view_sessionYear' %}">View Session Year</a></li>
+                    </ul>
+                </li>
+                <li class="{% active_link 'view_subject' 'active' %} {% active_link 'add_subject' 'active' %}">
+                    <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_subject' %}">Add Subject</a></li>
+                        <li><a href="{% url 'view_subject' %}">View Subject</a></li>
+                    </ul>
+                </li>
+
+                <li class="{% active_link 'view_blog' 'active' %} {% active_link 'blog_detial' 'active' %}">
+                    <a href="#"><i class="fa fa-bell"></i><span>News</span> <span
+                        class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_blog' %}">Post</a></li>
+                        <li><a href="{% url 'view_blog' %}">View Blogs</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="{% url 'dologout' %}"><i class="fa-solid fa-right-from-bracket"></i> <span>Log
+                            Out</span></a>
+                </li>
+            </ul>
+            
+            <!-- For Officer -->
+            {% elif user.user_type == '2'  %}
+            <ul>
+                <li class="menu-title">
+                    <span>Main Menu</span>
+                </li>
+                <li class="{% active_link 'hod_home' 'active' %}">
+                    <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+                </li>
+                <li class="submenu  %}">
+                    <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_student' %}">Add Student</a></li>
+                        <li><a href="{% url 'view_student' %}">View Student</a></li>
+                    </ul>
+                </li>
+                <li class="submenu  %}">
+                    <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Teachers</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_teacher' %}">Add Teacher</a></li>
+                        <li><a href="{% url 'view_teacher' %}">View Teacher</a></li>
+                    </ul>
+                </li>
+                <li class="submenu  %}">
+                    <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Officers</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_officer' %}">Add Officer</a></li>
+                        <li><a href="{% url 'view_officer' %}">View Officer</a></li>
+                    </ul>
+                </li>
+                <li
+                    class="submenu  %}">
+                    <a href="#"><i class="fas fa-book-reader"></i> <span> Session Years</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_sessionYear' %}">Add Session Year</a></li>
+                        <li><a href="{% url 'view_sessionYear' %}">View Session Year</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="#">Add Subject</a></li>
+                        <li><a href="#">View Subject</a></li>
+                    </ul>
+                </li>
+
+                <li class="{% active_link 'view_blog' 'active' %} {% active_link 'blog_detial' 'active' %}">
+                    <a href="#"><i class="fa fa-bell"></i><span>News</span> <span
+                        class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'add_blog' %}">Post</a></li>
+                        <li><a href="{% url 'view_blog' %}">View Blogs</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="{% url 'dologout' %}"><i class="fa-solid fa-right-from-bracket"></i> <span>Log
+                            Out</span></a>
+                </li>
+            </ul>
+
+            <!-- For Teacher -->
+            {% elif user.user_type == '3' %}
+            <ul>
+                <li class="menu-title">
+                    <span>Main Menu</span>
+                </li>
+                <li class="{% active_link 'teacher_home' 'active' %}">
+                    <a href="{% url 'teacher_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+                </li>
+                <li class="{% active_link 'view_blog' 'active' %}">
+                    <a href="{% url 'view_blog' %}"><i class="fa fa-bell" aria-hidden="true"></i><span>News</span></a>
+                </li>
+                <li class="">
+                    <a href="#"><i class="fa fa-bell" aria-hidden="true"></i><span>Messages</span></a>
+                </li>
+                <li class="">
+                    <a href="#">
+                        <i class="nav-icon fas fa-envelope-open-text" aria-hidden="true"></i>
+                        <span>Apply For Leave</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'dologout' %}"><i class="fa-solid fa-right-from-bracket"
+                            aria-hidden="true"></i><span>Logout</span></a>
+                </li>
+            </ul>
+            
+            {% else %}
+            <ul>
+                <li class="menu-title">
+                    <span>Main Menu</span>
+                </li>
+                <li class="{% active_link 'student_home' 'active' %}">
+                    <a href="{% url 'student_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+                </li>
+                <li class="">
+                    <a href="{% url 'view_blog' %}"><i class="fa fa-bell" aria-hidden="true"></i><span>News</span></a>
+                </li>
+                <li class="{% active_link 'student_messages' 'active' %}">
+                    <a href="#"><i class="fa fa-bell"
+                            aria-hidden="true"></i><span>Message</span></a>
+                </li>
+                <li class="">
+                    <a href="#">
+                        <i class="nav-icon fas fa-envelope-open-text" aria-hidden="true"></i>
+                        <span>Apply For Leave</span></a>
+                </li>
+                <li class="">
+                    <a href="{% url 'dologout' %}"><i class="fa-solid fa-right-from-bracket"
+                            aria-hidden="true"></i><span>Logout</span></a>
+                </li>
+            </ul>
+
+
+            {% endif %}
+        </div>
+    </div>
+</div>

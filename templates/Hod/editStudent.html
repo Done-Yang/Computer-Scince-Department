@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-body">
+            <form method="post" action="{% url 'update_student' %}" enctype="multipart/form-data">
+               {% csrf_token %}
+               <div class="col-12">
+                  <h5 class="form-title"><span>Edit Student</span></h5>
+               </div>
+
+               {% include 'includes/messages.html' %}
+
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Profile Pic</label>
+                     <input type="file" class="form-control" name="profile_pic">
+                     <input type="text" class="form-control" name="student_id"
+                        value="{% for i in students %}{{i.user.id}}{% endfor %}" hidden>
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                      <label>Student ID</label>
+                      <input type="text" class="form-control" name="studentID" 
+                        value="{% for i in students %}{{i.studentID}}{% endfor %}">
+                  </div>
+              </div>
+              <div class="col-sm-11">
+               <div class="form-group">
+                  <label>Username</label>
+                  <input type="text" class="form-control" name="username"
+                     value="{% for i in students %}{{i.user.username}}{% endfor %}">
+               </div>
+            </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>First Name</label>
+                     <input type="text" class="form-control" name="first_name"
+                        value="{% for i in students %}{{i.user.first_name}}{% endfor %}">
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Last Name</label>
+                     <input type="text" class="form-control" name="last_name"
+                        value="{% for i in students %}{{i.user.last_name}}{% endfor %}">
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Email</label>
+                     <input type="text" class="form-control" name="email"
+                        value="{% for i in students %}{{i.user.email}}{% endfor %}">
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Password</label>
+                     <input type="password" class="form-control" name="password"
+                        placeholder="Fill only if you want to change Password.">
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Address</label>
+                     <textarea class="form-control" name="address"
+                        required>{% for i in students %}{{i.address}}{% endfor %}</textarea>
+                  </div>
+               </div>
+
+               <div class="col-sm-11">
+                  <label>Gender</label>
+                  <select class="form-control" name="gender">
+                     <option value="Female">Female</option>
+                     <option value="Male">Male</option>
+                  </select>
+               </div>
+               <br>
+               <br>
+               <div class="col-sm-11">
+                  <label>Session Year</label>
+                  <select class="form-control" id="" name="session_year_id" aria-placeholder="Select Department" required>
+                      {% for i in sessionYear %}
+                      <option value="{{i.id}}">{{i.sessionYear}}</option>
+                      {% endfor %}
+                  </select>
+              </div> <br>
+               <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Update Student</button>
+               </div>
+
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

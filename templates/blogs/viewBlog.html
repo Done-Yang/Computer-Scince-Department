@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row align-items-center">
+         <div class="col">
+            <h3 class="page-title">Blogs</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="index.html">View</a></li>
+               <li class="breadcrumb-item active">Blogs</li>
+            </ul>
+         </div>
+         {% if user.user_type == '1' %}
+         <div class="col-auto text-right float-right ml-auto">
+            <a href="{% url 'add_blog' %}" class="btn btn-primary">Post</a>
+         </div>
+         {% endif %}
+      </div>
+    </div>
+   {% include 'includes/messages.html' %}
+   <div class="row">
+      {% for b in blogs %}
+      <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body text-left">
+                <a href="{% url 'blog_detial' b.id %}"><h5>{{ b.title }}</h5></a>
+                <p style="font-size: 12px; color: rgb(54, 161, 255);">{{ b.created }}</p>
+                {% if user.user_type == '1' %}
+                <div class="actions text-right">
+                  <a href="{% url 'edit_blog' b.id %}" class="btn btn-sm bg-success-light mr-2">
+                     <i class="fas fa-pen"></i>
+                  </a>
+                  <a href="{% url 'delete_blog'  b.id %}" class="btn btn-sm bg-danger-light">
+                     <i class="fas fa-trash"></i>
+                  </a>
+               </div>
+                {% endif %}
+            </div>
+
+        </div>
+      </div>
+      {% endfor %}
+   </div>
+</div>
+{% endblock %}

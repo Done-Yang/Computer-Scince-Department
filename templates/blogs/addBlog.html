@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-body">
+            <form method="POST" action="{% url 'add_blog' %}" enctype="multipart/form-data">
+               {% csrf_token %}
+               <div class="col-12">
+                  <h5 class="form-title"><span>Add Blog</span></h5>
+               </div>
+               {% include 'includes/messages.html' %}
+               <div class="col-sm-11">
+                <div class="form-group">
+                   <label>Title</label>
+                   <textarea class="form-control" name="title" required></textarea>
+                </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Picture</label>
+                     <input type="file" class="form-control" name="picture">
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Describtion</label>
+                     <textarea class="form-control" name="dsc"
+                        required></textarea>
+                  </div>
+               </div>
+               <div class="col-sm-11">
+                  <div class="form-group">
+                      <label>Link Tag</label>
+                      <input type="text" class="form-control" name="link" >
+                  </div>
+               </div> <br>
+               <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Post</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

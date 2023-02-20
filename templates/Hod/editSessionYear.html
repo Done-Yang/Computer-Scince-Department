@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form role="form" method="post" action="{% url 'update_sessionYear' %}">
+                    {% csrf_token %}
+
+                    <div class="col-12">
+                        <h5 class="form-title"><span>Edit Session Year</span></h5>
+                    </div>
+                    {% include 'includes/messages.html' %}
+                    <div class="col-sm-11">
+                        <div class="form-group">
+                            <label>Session Start Year </label>
+                            <input type="text" class="form-control" name="sessionYear" value="{{sessionYear.sessionYear}}">
+                            <input type="text" class="form-control" name="sessionYear_id" value="{{sessionYear.id}}" hidden>
+                        </div>
+                    </div> <br>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Update Session Year</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

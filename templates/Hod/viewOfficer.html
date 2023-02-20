@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row align-items-center">
+         <div class="col">
+            <h3 class="page-title">Officers</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+               <li class="breadcrumb-item active">Officers</li>
+            </ul>
+         </div>
+         <div class="col-auto text-right float-right ml-auto">
+            <a href="{% url 'add_officer' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+         </div>
+      </div>
+   </div>
+   {% include 'includes/messages.html' %}
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="card card-table">
+            <div class="card-body">
+               <div class="table-responsive">
+                  <table id="table_id" class="table table-hover table-center mb-0">
+                     <thead>
+                        <tr>
+                           <th>Officer ID</th>
+                           <th>Name</th>
+                           <th>Email</th>
+                           <th>Gender</th>
+                           <th>Address</th>
+                           <th>Created</th>
+                           <th>Updated</th>
+                           <th class="text-right">Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {% for i in officer %}
+                        <tr>
+                           <td>{{i.officerID}}</td>
+                           <td>
+                              <h2 class="table-avatar">
+                                 <a href="#" class="avatar avatar-sm mr-2">
+
+                                    {% if i.user.profile_pic %}
+                                    <img class="avatar-img rounded-circle" src="/{{i.user.profile_pic}}"
+                                       alt="User Image">
+                                    {% else %}
+                                    <img class="avatar-img rounded-circle" src="{% static 'assets/img/profile.png' %}"
+                                       alt="User Image">
+                                    {% endif %}
+                                    
+                                 </a>
+                                 <a href="#">{{i.user.username}}</a>
+                              </h2>
+                           </td>
+                           <td>{{i.user.email}}</td>
+                           <td>{{i.gender}}</td>
+                           <td>{{i.address}}</td>
+                           <td>{{i.created_at}}</td>
+                           <td>{{i.updated_at}}</td>
+                           <td class="text-right">
+                              <div class="actions">
+                                 <a href="{% url 'edit_officer' i.id %}" class="btn btn-sm bg-success-light mr-2">
+                                    <i class="fas fa-pen"></i>
+                                 </a>
+                                 <a href="{% url 'delete_officer' i.user.id %}" class="btn btn-sm bg-danger-light">
+                                    <i class="fas fa-trash"></i>
+                                 </a>
+                              </div>
+                           </td>
+                        </tr>
+                        {% endfor %}
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
